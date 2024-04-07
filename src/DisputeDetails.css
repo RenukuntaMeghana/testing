@@ -1,0 +1,43 @@
+/* DisputeDetails.css */
+
+.dispute-details-container {
+    text-align: center; /* Center the content horizontally */
+  }
+  
+  .form-container {
+    display: flex;
+
+    justify-content:center;
+  }
+  
+  .form-column {
+    flex: 1s;
+    padding: 0 10px;
+  }
+  
+  .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .form-row label {
+    /* margin-right: 2px; */
+    width: 100px;
+  }
+  
+  .form-row span {
+    flex: 1;
+    border: 2px solid #676565;
+    border-radius: 7px;
+    padding: 5px;
+    width: 100px;
+  }
+  
+  .recom {
+    text-align: center;
+  }
+  
+  .recom button {
+    margin: 5px;
+  }
