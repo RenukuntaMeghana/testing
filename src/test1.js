@@ -1,32 +1,54 @@
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import React, { useState } from 'react';
+import { Button, Modal, OverlayTrigger, Popover } from 'react-bootstrap';
 
-function test1(props) {
+const Test1 = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [additionalInfoVisible, setAdditionalInfoVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  const toggleAdditionalInfoPopover = () => {
+    setAdditionalInfoVisible(!additionalInfoVisible);
+  };
+  
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-}
+    <div>
+      <Button onClick={toggleModal}>Open Modal</Button>
 
-export default test1;
+      <Modal show={modalVisible} onHide={toggleModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Option Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Information about the selected option.</p>
+          <OverlayTrigger
+            // trigger="click"
+            placement="bottom"
+            show={additionalInfoVisible}
+            overlay={
+              <Popover id="popover">
+                <Popover.Title as="h3">Additional Information</Popover.Title>
+                <Popover.Content>
+                  <p>
+                    This is the additional information you requested. 
+                    You can write your paragraph text here.
+                  </p>
+                </Popover.Content>
+              </Popover>
+            }
+          >
+            <Button onClick={toggleAdditionalInfoPopover} variant="secondary">Additional Info</Button>
+          </OverlayTrigger>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={toggleModal}>Close</Button>
+          <Button variant="primary">Save changes</Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+};
+
+export default Test1;

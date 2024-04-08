@@ -34,10 +34,17 @@
     width: 100px;
   }
   
-  .recom {
-    text-align: center;
+  
+
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh; /* Adjust as needed */
   }
   
-  .recom button {
-    margin: 5px;
+  .accordion {
+    max-width: 600px; /* Adjust as needed */
+    width: 100%;
   }
+  

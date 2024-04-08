@@ -1,9 +1,6 @@
-// DisputeDetails.js
-
-// import React from 'react';
 import React, { useState } from 'react';
 import './DisputeDetails.css'; // Import CSS file for styling
-import { Button, Modal } from 'react-bootstrap';
+import { Accordion, Button, Modal, OverlayTrigger, Popover } from 'react-bootstrap'
 
 const DisputeDetails = () => {
   // Sample data for demonstration
@@ -21,16 +18,14 @@ const DisputeDetails = () => {
   ];
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [additionalInfoModalVisible, setAdditionalInfoModalVisible] = useState(false);
+  const [additionalInfoVisible, setAdditionalInfoVisible] = useState(false);
 
-  // Function to toggle the visibility of the modal
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
 
-  // Function to toggle the visibility of the additional info modal
-  const toggleAdditionalInfoModal = () => {
-    setAdditionalInfoModalVisible(!additionalInfoModalVisible);
+  const toggleAdditionalInfoPopover = () => {
+    setAdditionalInfoVisible(!additionalInfoVisible);
   };
   
   return (
@@ -61,41 +56,40 @@ const DisputeDetails = () => {
 
       <div className='recom'>
          <h2>Recommendations</h2>
-        <div>
-          <Button onClick={toggleModal} variant="primary">Option 1</Button>
-          <Button onClick={toggleModal} variant="success">Option 2</Button>
-          <Button onClick={toggleModal} variant="danger">Option 3</Button>
+         <div className="center-container">
+      <Accordion >
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Option 1</Accordion.Header>
+          <Accordion.Body>
+            <Button onClick={toggleModal} variant="secondary">Open Modal</Button>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>Option 2</Accordion.Header>
+          <Accordion.Body>
+            <Button onClick={toggleModal} variant="secondary">Open Modal</Button>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="2">
+          <Accordion.Header>Option 3</Accordion.Header>
+          <Accordion.Body>
+            <Button onClick={toggleModal} variant="secondary">Open Modal</Button>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
 
-          <Modal show={modalVisible} onHide={toggleModal}>
-            <Modal.Header closeButton>
-              <Modal.Title>Option Details</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <p>Information about the selected option.</p>
-              <Button onClick={toggleAdditionalInfoModal} variant="secondary">Additional Info</Button>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={toggleModal}>Close</Button>
-              <Button variant="primary">Save changes</Button>
-            </Modal.Footer>
-          </Modal>
-
-          <Modal show={additionalInfoModalVisible} onHide={toggleAdditionalInfoModal}>
-            <Modal.Header closeButton>
-              <Modal.Title>Additional Information</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <p>Additional information.</p>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={toggleAdditionalInfoModal}>Close</Button>
-            </Modal.Footer>
-          </Modal>
-        </div>
-      </div>
-
-
+      <Modal show={modalVisible} onHide={toggleModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Option Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Information about the selected option.</p>
+          <p>About customization</p>
+        </Modal.Body>
+      </Modal>
     </div>
+      </div>
+      </div>
   );
 };
 
